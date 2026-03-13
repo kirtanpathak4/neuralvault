@@ -8,8 +8,11 @@
 # If any RAGAS metric drops below 0.7, the build FAILS and the PR is blocked.
 # This ensures retrieval quality can never silently regress.
 #
-# Fork PRs: GROQ_API_KEY is not available to forks (GitHub security policy).
-# The eval step is skipped gracefully — CI shows green instead of crashing.
+# Contributing:
+#   A GROQ_API_KEY is required to run the eval. Groq is free — get a key at
+#   https://console.groq.com. Add it to your fork's secrets before opening a PR:
+#   Fork → Settings → Secrets and variables → Actions → New repository secret
+#   Name: GROQ_API_KEY
 #
 # Pipeline:
 #   1. Install dependencies
@@ -18,7 +21,7 @@
 #   4. Upload eval_results.json as artifact for score tracking
 #
 # Required secret:
-#   GROQ_API_KEY — set in GitHub repo Settings → Secrets → Actions
+#   GROQ_API_KEY — set in repo/fork Settings → Secrets → Actions
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: NeuralVault Eval
@@ -72,15 +75,8 @@ jobs:
           python eval/seed_knowledge.py
 
       - name: Run RAGAS evaluation
-        if: env.GROQ_API_KEY != ''
         run: |
           python eval/eval.py --threshold 0.7
-
-      - name: Skip eval (no API key — fork PR)
-        if: env.GROQ_API_KEY == ''
-        run: |
-          echo "GROQ_API_KEY not available — skipping eval (fork PR or secret not set)"
-          echo "Run locally with your own key: python eval/eval.py --threshold 0.7"
 
       - name: Upload eval results
         uses: actions/upload-artifact@v4
