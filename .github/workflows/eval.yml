@@ -8,7 +8,7 @@
 # Pipeline:
 #   1. Install dependencies
 #   2. Seed the knowledge base (chroma_db/ is gitignored, so CI starts empty)
-#   3. Run RAGAS evaluation against 10 golden-dataset Q&A pairs
+#   3. Run RAGAS evaluation against 38 tiered golden-dataset Q&A pairs
 #   4. Upload eval_results.json as artifact for score tracking
 #
 # Required secret:
@@ -26,7 +26,7 @@ on:
 jobs:
   ragas-eval:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
 
     steps:
       - name: Checkout code
