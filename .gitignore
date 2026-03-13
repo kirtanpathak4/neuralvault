@@ -7,3 +7,4 @@ data/
 eval/eval_results.json
 eval/*.log
 .claude/
+CLAUDE.md
