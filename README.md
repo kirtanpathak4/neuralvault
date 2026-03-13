@@ -8,7 +8,7 @@
 ![LLM](https://img.shields.io/badge/LLM-Llama%203.3%2070B%20via%20Groq-purple?style=flat-square)
 ![RAGAS](https://img.shields.io/badge/Eval-RAGAS%200.4.3-orange?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
-![CI](https://github.com/kirtanpathak/ai-learning-memory/actions/workflows/eval.yml/badge.svg)
+![CI](https://github.com/kirtanpathak4/neuralvault/actions/workflows/eval.yml/badge.svg)
 
 ---
 
@@ -139,7 +139,7 @@ NeuralVault is evaluated against a **38-question tiered golden dataset** on ever
 ## Project Structure
 
 ```
-ai-learning-memory/
+neuralvault/
 |
 +-- agents/                     # Pipeline agents (business logic)
 |   +-- __init__.py
@@ -195,8 +195,8 @@ ai-learning-memory/
 ### Step 1 — Clone the repository
 
 ```bash
-git clone https://github.com/kirtanpathak/ai-learning-memory.git
-cd ai-learning-memory
+git clone https://github.com/kirtanpathak4/neuralvault.git
+cd neuralvault
 ```
 
 ---
@@ -418,7 +418,7 @@ python-dotenv
 
 **Kirtan Pathak**
 Data Engineer II @ State of Utah
-[LinkedIn](https://linkedin.com/in/kirtanpathak4) · [GitHub](https://github.com/kirtanpathak)
+[LinkedIn](https://linkedin.com/in/kirtanpathak4) · [GitHub](https://github.com/kirtanpathak4)
 
 ---
 
