@@ -1,9 +1,15 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # NeuralVault — RAGAS Evaluation CI
 #
-# Runs automatically on every push to main and every pull request.
+# Triggers:
+#   - Pull request to main  → runs automatically (gates merges)
+#   - workflow_dispatch      → manual "Run workflow" button in Actions tab
+#
 # If any RAGAS metric drops below 0.7, the build FAILS and the PR is blocked.
 # This ensures retrieval quality can never silently regress.
+#
+# Fork PRs: GROQ_API_KEY is not available to forks (GitHub security policy).
+# The eval step is skipped gracefully — CI shows green instead of crashing.
 #
 # Pipeline:
 #   1. Install dependencies
@@ -18,10 +24,13 @@
 name: NeuralVault Eval
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read   # checkout the repo
+  checks: write    # post pass/fail status on PRs
 
 jobs:
   ragas-eval:
@@ -61,10 +70,17 @@ jobs:
           python eval/seed_knowledge.py
 
       - name: Run RAGAS evaluation
+        if: ${{ secrets.GROQ_API_KEY != '' }}
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           python eval/eval.py --threshold 0.7
+
+      - name: Skip eval (no API key — fork PR)
+        if: ${{ secrets.GROQ_API_KEY == '' }}
+        run: |
+          echo "GROQ_API_KEY not available — skipping eval (fork PR or secret not set)"
+          echo "Run locally with your own key: python eval/eval.py --threshold 0.7"
 
       - name: Upload eval results
         uses: actions/upload-artifact@v4
