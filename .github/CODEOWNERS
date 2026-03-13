@@ -1,0 +1,32 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# NeuralVault — Code Owners
+#
+# Owners listed here are automatically added as required reviewers when a PR
+# touches the matching files or directories. PRs cannot merge until all
+# required owners approve.
+#
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Default: you own everything — catch-all for any file not listed below
+*                   @kirtanpathak4
+
+# Core pipeline agents — retrieval, generation, ingestion logic
+/agents/            @kirtanpathak4
+
+# RAG internals — embedder and ChromaDB vector store
+/core/              @kirtanpathak4
+
+# Evaluation system — golden dataset, eval script, seed knowledge
+# Changes here affect CI pass/fail criteria
+/eval/              @kirtanpathak4
+
+# Versioned prompts — any change here affects every single answer
+# the system produces
+/config/            @kirtanpathak4
+
+# Streamlit UI
+/ui/                @kirtanpathak4
+
+# CI/CD workflow and this file — protect the protectors
+/.github/           @kirtanpathak4
