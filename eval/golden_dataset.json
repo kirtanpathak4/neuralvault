@@ -1,0 +1,236 @@
+[
+    {
+      "question": "What does RAG stand for and what problem does it solve?",
+      "ground_truth": "RAG stands for Retrieval Augmented Generation. It solves the hallucination problem by grounding LLM answers in retrieved documents rather than relying on the model's training data alone.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What is the difference between BM25 and vector search?",
+      "ground_truth": "BM25 is a keyword-based search algorithm that scores documents by exact term frequency and rarity. Vector search converts text to embeddings and finds semantically similar content using cosine similarity. BM25 excels at exact terms and acronyms while vector search handles synonyms and paraphrasing.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What is a cross-encoder reranker and why is it more accurate than a bi-encoder?",
+      "ground_truth": "A cross-encoder reads the query and candidate chunk together as a single input and outputs a relevance score. A bi-encoder embeds them separately and compares vectors. Cross-encoders are more accurate because they see both inputs simultaneously, like a human would judge relevance, rather than comparing isolated embeddings.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What is chunking in a RAG pipeline and why does overlap matter?",
+      "ground_truth": "Chunking splits documents into smaller segments for storage and retrieval. Overlap between chunks ensures sentences at chunk boundaries are not lost — the last N characters of one chunk are repeated at the start of the next, so no context is cut off.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What are the four RAGAS evaluation metrics?",
+      "ground_truth": "Faithfulness measures whether claims in the answer are supported by retrieved chunks. Answer relevancy measures whether the answer addresses the question. Context precision measures whether retrieved chunks are relevant to the question. Context recall measures whether all necessary chunks were retrieved.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What is the purpose of versioned prompts in a production RAG system?",
+      "ground_truth": "Versioned prompts treat prompt configuration as code — tracking changes, enabling rollback, and allowing A/B testing without modifying Python files. They separate configuration from logic and make it possible to correlate prompt versions with evaluation scores.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What does INSUFFICIENT_EVIDENCE mean in NeuralVault?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE is a marker returned by the LLM when the retrieved chunks do not contain enough information to answer the question reliably. It prevents hallucination by making the system explicitly refuse rather than generating a plausible but unsupported answer.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What embedding model does NeuralVault use and what dimension are the vectors?",
+      "ground_truth": "NeuralVault uses all-MiniLM-L6-v2 from sentence-transformers. It encodes text into 384-dimensional vectors representing semantic meaning.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What LLM and inference provider does NeuralVault use for generation?",
+      "ground_truth": "NeuralVault uses Llama 3.3 70B via Groq. Groq runs the model on custom LPU hardware providing fast inference.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What is cosine similarity and how is it used in retrieval?",
+      "ground_truth": "Cosine similarity measures the angle between two vectors — a score of 1.0 means identical meaning and 0.0 means completely unrelated. In retrieval, the query is embedded and cosine similarity is computed against all stored chunk vectors to find the most semantically relevant chunks.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What is hybrid search in a RAG pipeline?",
+      "ground_truth": "Hybrid search combines BM25 keyword search with vector-based semantic search. BM25 catches exact keywords while vector search catches meaning. Together they provide much better retrieval than either alone.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What chunk size and overlap does NeuralVault use?",
+      "ground_truth": "NeuralVault uses chunk_size=500 with chunk_overlap=50. This means each chunk is approximately 500 characters, and the last 50 characters of one chunk are repeated at the start of the next.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "Why can't cross-encoders be used to search the entire corpus directly?",
+      "ground_truth": "Cross-encoders read the query and chunk together as a single input, so they cannot pre-compute embeddings. This makes them too slow to run on all stored chunks. They are only used on a shortlist of candidates after fast initial retrieval with bi-encoders and BM25.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "What does a faithfulness score of 1.0 mean in RAGAS?",
+      "ground_truth": "A faithfulness score of 1.0 means zero hallucination — every claim in the generated answer traces back to a retrieved chunk. It means all claims are fully supported by the retrieved context.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+    {
+      "question": "Why does NeuralVault store prompts in a YAML config file?",
+      "ground_truth": "Versioned prompts treat prompt configuration as code. Storing them in YAML separates configuration from logic, enables tracking changes, rollback, and A/B testing without modifying Python files. It also makes it possible to correlate prompt versions with evaluation scores.",
+      "topic": "RAG",
+      "type": "factual"
+    },
+
+
+    {
+      "question": "What is gradient descent and how does it optimize neural network weights?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+    {
+      "question": "How do Docker containers differ from virtual machines?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+    {
+      "question": "Explain the CAP theorem in distributed systems.",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+    {
+      "question": "What are React hooks and how does useState work?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+    {
+      "question": "Explain the difference between SQL JOIN types: INNER, LEFT, and FULL OUTER.",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+    {
+      "question": "What is Kubernetes and how does it orchestrate containers?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+    {
+      "question": "How does the TCP three-way handshake establish a network connection?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+    {
+      "question": "What is the difference between symmetric and asymmetric encryption?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+    {
+      "question": "Explain how garbage collection works in Java.",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+    {
+      "question": "What is the observer design pattern and when should it be used?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": null,
+      "type": "insufficient"
+    },
+
+
+    {
+      "question": "Explain how NeuralVault combines hybrid search with cross-encoder reranking to improve retrieval quality.",
+      "ground_truth": "NeuralVault first runs BM25 keyword search and vector semantic search in parallel to cast a wide net. BM25 catches exact term matches while vector search finds semantically similar chunks. The results are merged and deduplicated. Then a cross-encoder reranker reads each query-chunk pair together as a single input and scores relevance precisely. The top chunks by reranker score are returned. This multi-stage approach gives the speed of bi-encoder retrieval with the precision of cross-encoder scoring.",
+      "topic": "RAG",
+      "type": "cross_chunk"
+    },
+    {
+      "question": "How does NeuralVault prevent hallucination from ingestion all the way through to answer generation?",
+      "ground_truth": "NeuralVault prevents hallucination through multiple layers. Documents are chunked and stored as embeddings so only relevant content is retrieved. The prompt strictly instructs the LLM to answer ONLY from the provided study notes. If chunks don't contain enough information, the system returns INSUFFICIENT_EVIDENCE instead of fabricating an answer. Versioned prompts ensure these grounding instructions are tracked and never accidentally removed.",
+      "topic": "RAG",
+      "type": "cross_chunk"
+    },
+    {
+      "question": "Compare how vector search and BM25 each handle the query 'HNSW index parameter' and explain why hybrid search works better.",
+      "ground_truth": "Vector search embeds the query and finds chunks with similar meaning, like 'vector database configuration', even if they don't contain the exact term HNSW. BM25 tokenizes the query and finds chunks literally containing the word HNSW based on exact keyword matching. Hybrid search combines both — vector search covers semantic meaning while BM25 covers exact terms. Together they retrieve chunks that neither approach would find alone.",
+      "topic": "RAG",
+      "type": "cross_chunk"
+    },
+    {
+      "question": "Walk through the full lifecycle of a chunk from document ingestion to appearing in an LLM-generated answer.",
+      "ground_truth": "A document is loaded and split into overlapping chunks of about 500 characters with 50-character overlap. Each chunk is embedded into a 384-dimensional vector by all-MiniLM-L6-v2 and stored in ChromaDB with metadata. The same text is tokenized and stored in a BM25 index. At query time, both vector search and BM25 retrieve candidate chunks. A cross-encoder reranker scores each candidate against the query. The top chunks are formatted with numbered citations and injected into the prompt. The LLM generates an answer citing specific chunk numbers.",
+      "topic": "RAG",
+      "type": "cross_chunk"
+    },
+    {
+      "question": "How does NeuralVault's evaluation pipeline measure both retrieval quality and generation quality?",
+      "ground_truth": "RAGAS measures retrieval quality through context precision (are retrieved chunks relevant to the question) and context recall (were all needed chunks retrieved). It measures generation quality through faithfulness (are answer claims supported by chunks, no hallucination) and answer relevancy (does the answer address the question asked). A separate judge LLM scores these metrics against a golden dataset of known-correct question-answer pairs.",
+      "topic": "RAG",
+      "type": "cross_chunk"
+    },
+    {
+      "question": "Explain the tradeoff between bi-encoder speed and cross-encoder accuracy, and how NeuralVault uses both.",
+      "ground_truth": "Bi-encoders embed query and chunks separately, enabling pre-computation and fast cosine similarity search across thousands of chunks. But comparing isolated embeddings is approximate. Cross-encoders read query and chunk together as one input, producing much more accurate relevance scores, but they cannot pre-compute and are too slow for full-corpus search. NeuralVault uses bi-encoders for fast initial retrieval of a shortlist, then cross-encoders to precisely rerank that shortlist. This combines the speed of bi-encoders with the accuracy of cross-encoders.",
+      "topic": "RAG",
+      "type": "cross_chunk"
+    },
+    {
+      "question": "Why does NeuralVault use both ChromaDB and a BM25 JSON file instead of a single database?",
+      "ground_truth": "ChromaDB stores vector embeddings and supports cosine similarity search for semantic matching, but it has no keyword search capability. BM25 needs raw tokenized text to score documents by exact term frequency and rarity. Since they serve different retrieval strategies, NeuralVault maintains both in sync — same IDs and metadata — so hybrid search can combine their results. The BM25 corpus is stored as JSON alongside ChromaDB's SQLite database.",
+      "topic": "RAG",
+      "type": "cross_chunk"
+    },
+    {
+      "question": "How do chunking overlap and cross-encoder reranking work together to prevent information loss at chunk boundaries?",
+      "ground_truth": "Chunking with overlap ensures that sentences at chunk boundaries appear fully in at least one chunk — the last 50 characters of chunk N are repeated at the start of chunk N+1, so no context is cut off. The cross-encoder reranker then evaluates each chunk against the query by reading both together. If a boundary sentence is important for answering the query, the overlap ensures it exists in at least one chunk, and the reranker ensures that chunk gets ranked highly.",
+      "topic": "RAG",
+      "type": "cross_chunk"
+    },
+
+
+    {
+      "question": "How does NeuralVault use GPT-4 for answer generation?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": "RAG",
+      "type": "adversarial"
+    },
+    {
+      "question": "What cloud vector database does NeuralVault connect to for storing embeddings?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": "RAG",
+      "type": "adversarial"
+    },
+    {
+      "question": "How does NeuralVault fine-tune its embedding model on user data?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": "RAG",
+      "type": "adversarial"
+    },
+    {
+      "question": "What GPU is required to run NeuralVault's embedding and reranking models?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": "RAG",
+      "type": "adversarial"
+    },
+    {
+      "question": "How does NeuralVault use LangChain agents to orchestrate multi-step reasoning?",
+      "ground_truth": "INSUFFICIENT_EVIDENCE: The retrieved notes do not contain enough information to answer this question confidently. Try ingesting more content on this topic.",
+      "topic": "RAG",
+      "type": "adversarial"
+    }
+  ]

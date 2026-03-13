@@ -1,0 +1,14 @@
+bs4
+chromadb
+datasets
+groq
+langchain-community
+langchain-text-splitters
+openai
+pypdf
+pyyaml
+ragas==0.4.3
+rank_bm25
+sentence-transformers
+streamlit
+python-dotenv
