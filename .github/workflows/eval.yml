@@ -36,6 +36,8 @@ jobs:
   ragas-eval:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
 
     steps:
       - name: Checkout code
@@ -70,14 +72,12 @@ jobs:
           python eval/seed_knowledge.py
 
       - name: Run RAGAS evaluation
-        if: ${{ secrets.GROQ_API_KEY != '' }}
-        env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        if: env.GROQ_API_KEY != ''
         run: |
           python eval/eval.py --threshold 0.7
 
       - name: Skip eval (no API key — fork PR)
-        if: ${{ secrets.GROQ_API_KEY == '' }}
+        if: env.GROQ_API_KEY == ''
         run: |
           echo "GROQ_API_KEY not available — skipping eval (fork PR or secret not set)"
           echo "Run locally with your own key: python eval/eval.py --threshold 0.7"
